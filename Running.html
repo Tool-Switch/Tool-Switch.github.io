@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWITCH: An Exemplar for Evaluating Self-Adaptive ML-Enabled Systems</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        .code-block {
+            position: relative;
+        }
+        .copy-button {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2 class="mt-4">Run the application</h2>
+
+        <p>Ensure <code>docker-compose.yml</code> is running:</p>
+
+        <p>If not running, run the following command from directory <code>SWITCH</code>:</p>
+
+        <pre class="code-block bg-light p-3" style="height: 5rem;">
+            <code>
+docker-compose up
+            </code>
+            <button class="btn btn-outline-primary copy-button btn-sm" onclick="copyToClipboard(this)">Copy</button>
+        </pre>
+
+        <p><strong>If using virtual environment:</strong></p>
+
+        <p>Ensure that you are in the virtual environment you had created; you can activate the virtual environment using the command:</p>
+
+        <pre class="code-block bg-light p-3" style="height: 5rem;">
+            <code>
+source venv/bin/activate
+            </code>
+            <button class="btn btn-outline-primary copy-button btn-sm" onclick="copyToClipboard(this)">Copy</button>
+        </pre>
+
+        <p>Run the backend first for the application from the directory <code>SWITCH/NAVIE</code>:</p>
+
+        <pre class="code-block bg-light p-3" style="height: 5rem;">
+            <code>
+python3 Node.py
+            </code>
+            <button class="btn btn-outline-primary copy-button btn-sm" onclick="copyToClipboard(this)">Copy</button>
+        </pre>
+
+        <p>Run the React-Application from the directory <code>SWITCH</code>:</p>
+
+        <pre class="code-block bg-light p-3" style="height: 5rem;">
+            <code>
+npm run start
+            </code>
+            <button class="btn btn-outline-primary copy-button btn-sm" onclick="copyToClipboard(this)">Copy</button>
+        </pre>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Copy to clipboard function -->
+    <script>
+        function copyToClipboard(button) {
+            var codeBlock = button.parentNode.querySelector('code');
+            var textArea = document.createElement('textarea');
+            textArea.value = codeBlock.innerText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            button.innerText = 'Copied!';
+            setTimeout(function() {
+                button.innerText = 'Copy';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

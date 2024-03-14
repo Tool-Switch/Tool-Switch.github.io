@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWITCH: An Exemplar for Evaluating Self-Adaptive ML-Enabled Systems</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        .code-block {
+            position: relative;
+        }
+        .copy-button {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1 class="mb-4">SWITCH: An Exemplar for Evaluating Self-Adaptive ML-Enabled Systems</h1>
+
+        <p class="lead">"SWITCH" is an exemplar developed to enhance self-adaptive capabilities in Machine Learning-Enabled Systems through dynamic model switching at runtime. It is designed as a comprehensive web service, catering to a broad range of ML scenarios, with its implementation demonstrated through an object detection use case.</p>
+
+        <h2 class="mt-4">Getting started</h2>
+
+        <p>The system comprises distinct components, including a frontend written in React, a backend powered by FAST API in Python, and Elasticsearch serving as the database. We will be using YOLOv5u as the object detection model.</p>
+
+        <h3 class="mt-4">Requirements:</h3>
+
+        <ul>
+            <li>Install <a href="https://docs.docker.com/get-docker/">Docker Engine</a> and <a href="https://docs.docker.com/compose/install/">Docker Compose</a> as standalone binaries.</li>
+            <li>Minimum free space of 7 GB.</li>
+            <li>The system is designed for Linux environments. If you do not have access to a Linux system, you can either utilize a virtual Linux machine or employ a Docker image of a Linux environment.</li>
+            <li>If using a virtual environment for setup, pre-install virtualenv.</li>
+        </ul>
+
+        <h2 class="mt-4">Installation</h2>
+
+        <p>Video for steps of installation and running the application can be found at:</p>
+
+        <ol>
+            <li><a href="https://youtu.be/ZIDE1v3jxeQ">Youtube</a></li>
+            <li><a href="https://drive.google.com/drive/folders/1eGY1QGXpP4FYkav2G2uusmV6QSHVnoVx?usp=sharing">Google Drive</a></li>
+        </ol>
+
+        <p>Clone the GitHub repository:</p>
+
+        <pre class="code-block bg-light p-3" style="height: 6rem;">
+            <code>
+git clone https://github.com/sa4s-serc/switch
+cd SWITCH
+            </code>
+            <button class="btn btn btn-outline-primary copy-button btn-sm" onclick="copyToClipboard(this)">Copy</button>
+        </pre>
+
+        <ol>
+        <h3 class="mt-4"><li>Setting up Elastic Search and Kibana</li></h3>
+
+        <p>Start the <b>docker engine</b> on your system.</p>
+
+        <p>Start Elasticsearch and Kibana containers using Docker Compose with image version 7.9.1, using the command:</p>
+
+        <pre class="code-block bg-light p-3" style="height: 6rem;">
+            <code>
+docker-compose up
+            </code>
+            <button class="btn btn btn-outline-primary copy-button btn-sm" onclick="copyToClipboard(this)">Copy</button>
+        </pre>
+
+        <p>Wait until ready; this may take time to install depending on the internet connection.</p>
+
+        <p>You can check if it's ready by accessing Elasticsearch at <a href="http://localhost:9200/">http://localhost:9200/</a> and Kibana at <a href="http://localhost:5601/">http://localhost:5601/</a>.</p>
+
+        <p>Leave the Docker container running. Use a different terminal for the rest of the steps.</p>
+
+        <h3 class="mt-4"><li>Setting up Virtual Environment (optional)</li></h3>
+
+        <p>Using virtualenv allows you to avoid installing Python packages globally.</p>
+
+        <pre class="code-block bg-light p-3" style="height: 6rem;">
+            <code>
+python3 -m venv ./venv
+source venv/bin/activate
+            </code>
+            <button class="btn btn btn-outline-primary copy-button btn-sm" onclick="copyToClipboard(this)">Copy</button>
+        </pre>
+
+        <h3 class="mt-4"><li>Installation (only one is required)</li></h3>
+     
+        <h4>Installation using setup.sh</h4>
+
+        <pre class="code-block bg-light p-3" style="height: 6rem;">
+            <code>
+chmod +x setup.sh
+./setup.sh
+            </code>
+            <button class="btn btn btn-outline-primary copy-button btn-sm" onclick="copyToClipboard(this)">Copy</button>
+        </pre>
+
+        <h4 class="text-center">OR</h4>
+    
+      </li><h4 class="dropdown-toggle" data-toggle="collapse" data-target="#manualInstallation">
+             Manual Installation <i class="fas fa-chevron-down"></i> 
+        </h4>
+        
+
+    <ul id="manualInstallation" class="collapse">
+        <h5>Importing Dashboard</h5>
+        <pre class="code-block bg-light p-3" style="height: 6rem;">
+            <code>
+    curl -X POST "http://localhost:5601/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@export.ndjson
+            </code>
+            <button class="btn btn-outline-primary copy-button btn-sm" onclick="copyToClipboard(this)">Copy</button>
+        </pre>
+    
+        <h5>Setting up Frontend</h5>
+        <pre class="code-block bg-light p-3" style="height: 6rem;">
+            <code>
+    npm install
+            </code>
+            <button class="btn btn-outline-primary copy-button btn-sm" onclick="copyToClipboard(this)">Copy</button>
+        </pre>
+    
+        <h5>Setting up Backend: Model loader, MAPE-K, Locust a load tester.</h5>
+        <pre class="code-block bg-light p-3" style="height: 6rem;">
+            <code>
+    cd NAVIE
+    pip install -r requirements.txt
+    python3 process_model.py
+            </code>
+            <button class="btn btn-outline-primary copy-button btn-sm" onclick="copyToClipboard(this)">Copy</button>
+        </pre>
+    </ul>
+    </ol>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Copy to clipboard function -->
+    <script>
+        function copyToClipboard(button) {
+            var codeBlock = button.parentNode.querySelector('code');
+            var textArea = document.createElement('textarea');
+            textArea.value = codeBlock.innerText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            button.innerText = 'Copied!';
+            setTimeout(function() {
+                button.innerText = 'Copy';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
