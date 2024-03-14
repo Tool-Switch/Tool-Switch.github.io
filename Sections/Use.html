@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using the Application</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        .code-block {
+            position: relative;
+        }
+        .copy-button {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="mt-4">Using the Application</h2>
+
+    <h3 class="mt-4">If the Image folder size is less than 500Mb</h3>
+    <ol>
+        <li>Upload Image folder in .zip format. The .zip file must have the same name as the Image folder.</li>
+    </ol>
+
+    <h3 class="mt-4">If the Image folder size is greater than 500Mb</h3>
+    <ol>
+        <li>Enter the full path of your image folder starting from the root directory in the provided text field.</li>
+    </ol>
+
+    <h3 class="mt-4">Next steps are the same for both ways of giving the Image folder as Input.</h3>
+    <ol>
+        <li>Create a <code>.csv</code> file with inter-arrival rates for images and upload it.</li>
+        <li>Assign an <code>ID</code> to your experiment.</li>
+        <li>Choose an approach for running the experiment:</li>
+        <ul>
+            <li>4 self-adaptive approaches:</li>
+            <ul>
+                <li><code>NAIVE</code> and <code>AdaMLs</code> are different types of provided adaptation techniques.</li>
+                <li><code>Modify NAIVE</code> modifies the NAIVE algorithm according to user input values.</li>
+                <li><code>Upload MAPE-K files</code> is described in the MAPE-K section of the documentation.</li>
+            </ul>
+            <li>5 single model approaches.</li>
+        </ul>
+        <li>Click <code>Upload</code>.</li>
+        <li>Once the Dashboard is displayed, you can adjust the refresh rate by clicking on the watch icon. A dropdown menu will appear, allowing you to set the desired refresh rate.</li>
+        <li>Stop the process or when all images are processed, click <code>Stop Process</code>.</li>
+        <li>Download data for the experiment.</li>
+        <li>You can start a new experiment by clicking <code>New Process</code>.</li>
+    </ol>
+</div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Copy to clipboard function -->
+<script>
+    function copyToClipboard(button) {
+        var codeBlock = button.parentNode.querySelector('code');
+        var textArea = document.createElement('textarea');
+        textArea.value = codeBlock.innerText;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        button.innerText = 'Copied!';
+        setTimeout(function() {
+            button.innerText = 'Copy';
+        }, 1000);
+    }
+</script>
+</body>
+</html>
